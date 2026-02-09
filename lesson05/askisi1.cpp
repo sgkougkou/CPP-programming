@@ -7,12 +7,55 @@ class tictactoe {
         tictactoe();
         bool play(int x , int y , char c); 
         char checkwin();   
+        void print();
     char array[N][N];
 };
 
 int main()
 {
-    return 0;
+     
+    tictactoe t; 
+    char player = 'X';
+    int x,y, step=0;
+    
+    while(true)
+    {
+        cout<<"PLAISIO: "<<endl;
+        t.print();  
+        cout<<"Paizei o "<<player<<endl; 
+        
+        cout<<"Dwse X sintetagmeni: ";
+        cin>>x;
+        cout<<"Dwse Y sintetagmeni: ";
+        cin>>y;
+        
+        if (!t.play(x,y,player))
+        {
+            cout<<"Lathos Kinisi!"<<endl;
+            continue;
+        }
+        else
+            step++; 
+        
+        if (t.checkwin()!='-')
+        {
+            t.print(); 
+            cout<<"Nikise o "<<t.checkwin();
+            break;
+        }
+        else if (step==9)
+        {
+            t.print(); 
+            cout<<"Isopalia";
+            break;
+        }
+        
+
+        if (player=='X')
+            player='O';
+        else
+            player='X';
+    }
 }
 
 tictactoe::tictactoe() {
@@ -60,4 +103,15 @@ char tictactoe::checkwin() {
         return array[0][2];
     
     return '-';
+}
+
+void tictactoe::print()
+{
+    int i,j; 
+    for (i=0; i<N; i++)
+    {
+        for (j=0; j<N; j++)
+            cout<<array[i][j];
+        cout<<endl;
+    }
 }
